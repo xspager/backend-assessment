@@ -146,16 +146,7 @@ Critérios ordenados por ordem de peso decrescente:
 
 Ao finalizar a implementação, o diretório da solução pode ser submetido de duas formas:
 
-1. através de um _pull request_ neste repositório ou
+1. através de um _fork_ e um _pull request_ neste repositório ou
 1. por email, compactado, para `it@t10.digital` com o assunto `Backend Assessment`
-
-Em etapas:
-
-1. Faça um _fork_ desse repositório (e não clonar direto)
-
-   **O fork deve ser público**
-
-2. Use o _fork_ como repositório para escrever o código de submissão
-3. Abra um _merge request_ para este repositório
 
 Feito 🤘
