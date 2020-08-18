@@ -49,22 +49,22 @@ Relação de acesso:
 
 ### 2. Solicitação
 
-**Premissa**: Dado que um `ExternalApp` possui um token ativo, possui permissão para solicitar uma ativação de produto e solicita uma ativação, uma solicitação de ativação é despachada
+**Premissa**: Dado que um `ExternalApp` possui um token ativo, permissão para solicitar uma ativação de produto e solicita uma ativação para o `customer_mid`, então uma solicitação de ativação é despachada
 
-- Dado que uma solicitação de ativação é despachada, uma notificação de confirmação é enviada ao `Owner` da `ExternalApp`
+- Dado que uma solicitação de ativação é despachada, então uma notificação de confirmação é enviada ao `customer_mid`
 
 ### 3. Avaliação
 
-**Premissa**: Dado que um `SuperUser` possui um token ativo, possui permissão para avaliar uma ativação de produto e
+**Premissa**: Dado que um `SuperUser` possui um token ativo, permissão para avaliar uma ativação de produto e
 
 1. rejeita uma determinada ativação, então o cancelamento desta ativação é despachado
-   - Dado que um cancelamento de uma ativação é despachado, a view de solicitações é atualizada
-   - Dado que um cancelamento de uma ativação é despachado, uma notificação de cancelamento é enviada ao `Owner` da `ExternalApp`
+   - Dado que um cancelamento de uma ativação é despachado, então a view de solicitações é atualizada
+   - Dado que um cancelamento de uma ativação é despachado, então uma notificação de cancelamento é enviada ao `customer_mid`
 1. aprova uma determinada ativação, então a aprovação desta ativação é despachado
-   - Dado que uma aprovação de uma ativação é despachada, a view de solicitações é atualizada
-   - Dado que uma aprovação de uma ativação é despachada, uma notificação é enviada ao `Owner` da `ExternalApp`
+   - Dado que uma aprovação de uma ativação é despachada, então a view de solicitações é atualizada
+   - Dado que uma aprovação de uma ativação é despachada, então uma notificação é enviada ao `customer_mid`
 
-As especificações estão representadas [neste modelo de eventos](img/model.jpg).
+Diagrama do [modelo de eventos](img/model.jpg). Note que é uma representação do domínio _exclusivamente_.
 
 ## Requisitos
 
