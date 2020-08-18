@@ -4,14 +4,14 @@ Olá! 🖖🏽
 
 Nossa intenção é, através deste (breve) desafio, avaliar a capacidade percebida ao empregar e desenvolver uma solução para o problema aqui descrito.
 
-## Domínio-Problema
+## Domínio Problema
 
 Uma instituição financeira contratou os serviços da T10 buscando maior **agilidade dos dados** através da metrificação de processos que, até então, não eram _observados_ (apropriadamente). Um dos processos é a solicitação do produto débito automático de empresas parceiras.
 A operação é realizada manualmente e vai ser automatizada por este serviço, que vai permitir que outros serviços consumam, de forma livre, de seus eventos operacionais.
 
 # Escopo
 
-## Cases
+## Casos de Uso
 
 As entidades conhecidas são:
 
@@ -65,8 +65,6 @@ Relação de acesso:
    - Dado que uma aprovação de uma ativação é despachada, uma notificação é enviada ao `Owner` da `ExternalApp`
 
 As especificações estão representadas [neste modelo de eventos](img/model.jpg).
-
----
 
 ## Requisitos
 
@@ -123,9 +121,9 @@ Critérios ordenados por ordem de peso decrescente:
 
 1. Correção (_correctness_) da solução
 
-   - a fim de solucionar o [domínio-problema](#Domínio-Problema)
-   - a fim de cumprir os [casos de uso](#Casosdeuso)
-   - ao implementar os requisitos especificados
+   - a fim de solucionar o [domínio-problema](#domínio-problema)
+   - a fim de cumprir os [casos de uso](#casos-de-uso)
+   - ao implementar os [requisitos](#requisitos) especificados
 
 1. Testes
 1. Organização, documentação e clareza na estruturação do projeto
