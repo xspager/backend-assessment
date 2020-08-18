@@ -2,7 +2,7 @@
 
 Olá! 🖖🏽
 
-Nossa intenção é, através deste (breve) desafio, avaliar a capacidade percebida ao empregar e desenvolver uma solução para o problema aqui descrito.
+Nossa intenção é, através deste (breve) desafio, avaliar a habilidade técnica percebida ao empregar e desenvolver uma solução para o problema aqui descrito.
 
 ## Domínio Problema
 
@@ -60,7 +60,7 @@ Relação de acesso:
 1. rejeita uma determinada ativação, então o cancelamento desta ativação é despachado
    - Dado que um cancelamento de uma ativação é despachado, então a view de solicitações é atualizada
    - Dado que um cancelamento de uma ativação é despachado, então uma notificação de cancelamento é enviada ao `customer_mid`
-1. aprova uma determinada ativação, então a aprovação desta ativação é despachado
+1. aprova uma determinada ativação, então a aprovação desta ativação é despachada
    - Dado que uma aprovação de uma ativação é despachada, então a view de solicitações é atualizada
    - Dado que uma aprovação de uma ativação é despachada, então uma notificação é enviada ao `customer_mid`
 
