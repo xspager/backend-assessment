@@ -19,6 +19,10 @@ As entidades conhecidas são:
 - `Customer`, identificado por `customer_mid`, representa um cliente de `ExternalApp`
 - `SuperUser`, representa um analista da mesa de integração
 
+Glossário:
+
+- "Solicitação de ativação" é traduzido para "Activation request"
+
 ### 1. Acesso
 
 **Premissa**: Dado que um `ExternalApp` ou `SuperUser` possui um conjunto de credenciais de acesso válido, um novo token é gerado
