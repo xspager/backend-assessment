@@ -15,8 +15,9 @@ A operação é realizada manualmente e vai ser automatizada por este serviço, 
 
 As entidades conhecidas são:
 
-- `ExternalApp`, representando uma aplicação externa e
-- `SuperUser`, representando um analista da mesa de integração
+- `ExternalApp`, representa uma aplicação externa e
+- `Customer`, identificado por `customer_mid`, representa um cliente de `ExternalApp`
+- `SuperUser`, representa um analista da mesa de integração
 
 ### 1. Acesso
 
@@ -39,9 +40,8 @@ Relação de acesso:
    - `RejectActivation: SuperUser`
    - `ApproveActivation: SuperUser`
 
-1. Views
-   - `ActiveTokens: Public`
-   - `ActivationRequest: ExternalApp, SuperUser`
+1. Read Model
+   - `ActivationRequests: ExternalApp, SuperUser`
 
 **~Premissa**: Dado que um `ExternalApp` ou `SuperUser` possui um token ativo, **não** possui permissão para acessar um recurso específico, um erro é retornado à aplicação e nenhuma ação é executada
 
