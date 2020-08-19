@@ -55,7 +55,7 @@ Relação de acesso:
 
 **Premissa**: Dado que um `ExternalApp` possui um token ativo, permissão para solicitar uma ativação de produto e solicita uma ativação para o `customer_mid`, então uma solicitação de ativação é despachada
 
-- Dado que uma solicitação de ativação é despachada, então uma notificação de confirmação é enviada ao `customer_mid`
+- Dado que uma solicitação de ativação é despachada, então um email de confirmação é enviada ao `customer_mid`
 
 ### 3. Avaliação
 
@@ -63,10 +63,10 @@ Relação de acesso:
 
 1. rejeita uma determinada ativação, então o cancelamento desta ativação é despachado
    - Dado que um cancelamento de uma ativação é despachado, então o read model de solicitações é atualizada
-   - Dado que um cancelamento de uma ativação é despachado, então uma notificação de cancelamento é enviada ao `customer_mid`
+   - Dado que um cancelamento de uma ativação é despachado, então um email de cancelamento é enviada ao `customer_mid`
 1. aprova uma determinada ativação, então a aprovação desta ativação é despachada
    - Dado que uma aprovação de uma ativação é despachada, então o read model de solicitações é atualizada
-   - Dado que uma aprovação de uma ativação é despachada, então uma notificação é enviada ao `customer_mid`
+   - Dado que uma aprovação de uma ativação é despachada, então um email é enviada ao `customer_mid`
 
 Diagrama do [modelo de eventos](img/model.jpg). Note que é uma representação do domínio _exclusivamente_.
 
