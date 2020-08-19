@@ -62,10 +62,10 @@ Relação de acesso:
 **Premissa**: Dado que um `SuperUser` possui um token ativo, permissão para avaliar uma ativação de produto e
 
 1. rejeita uma determinada ativação, então o cancelamento desta ativação é despachado
-   - Dado que um cancelamento de uma ativação é despachado, então a view de solicitações é atualizada
+   - Dado que um cancelamento de uma ativação é despachado, então o read model de solicitações é atualizada
    - Dado que um cancelamento de uma ativação é despachado, então uma notificação de cancelamento é enviada ao `customer_mid`
 1. aprova uma determinada ativação, então a aprovação desta ativação é despachada
-   - Dado que uma aprovação de uma ativação é despachada, então a view de solicitações é atualizada
+   - Dado que uma aprovação de uma ativação é despachada, então o read model de solicitações é atualizada
    - Dado que uma aprovação de uma ativação é despachada, então uma notificação é enviada ao `customer_mid`
 
 Diagrama do [modelo de eventos](img/model.jpg). Note que é uma representação do domínio _exclusivamente_.
