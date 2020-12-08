@@ -1,4 +1,4 @@
-# Backend Assessment
+Backend Assessment
 
 Olá! 🖖🏽
 
@@ -13,62 +13,22 @@ A operação é realizada manualmente e vai ser automatizada por este serviço, 
 
 ## Casos de Uso
 
-As entidades conhecidas são:
+1. Autenticação e acesso a plataforma
 
-- `ExternalApp`, representa uma aplicação externa e
-- `Customer`, identificado por `customer_mid`, representa um cliente de `ExternalApp`
-- `SuperUser`, representa um analista da mesa de integração
+Um usuário autenticado,
 
-Glossário:
+2. solicita uma ativação de débito automático
+3. cancela uma solicitação de ativação
+4. aprova uma solicitação de ativação
+5. rejeita uma solicitação de ativação
+6. visualiza uma solicitação
 
-- "Solicitação de ativação" é traduzido para "Activation request"
 
-### 1. Acesso
+Diagrama do [modelo de eventos](img/model.jpg).
 
-**Premissa**: Dado que um `ExternalApp` ou `SuperUser` possui um conjunto de credenciais de acesso válido, um novo token é gerado
-
-- Dado que um novo token é gerado, então a lista de tokens ativos é atualizada
-
-**~Premissa**: Dado que um `ExternalApp` ou `SuperUser` não possui um conjunto de credenciais de acesso válido, um erro é retornado e nenhum token é gerado
-
-### 2. Acesso à recursos
-
-**Premissa**: Dado que um `ExternalApp` ou `SuperUser` possui um token ativo e possui permissão para acessar um recurso específico, a ação é executada
-
-Relação de acesso:
-
-1. Commands
-
-   - `RequestToken: ExternalApp, SuperUser`
-   - `IssueProductActivation: ExternalApp`
-   - `RejectActivation: SuperUser`
-   - `ApproveActivation: SuperUser`
-
-1. Read Model
-   - `ActivationRequests: ExternalApp, SuperUser`
-
-**~Premissa**: Dado que um `ExternalApp` ou `SuperUser` possui um token ativo, **não** possui permissão para acessar um recurso específico, um erro é retornado à aplicação e nenhuma ação é executada
-
-**~Premissa**: Dado que um `ExternalApp` **não** possui um token ativo e solicita acesso à um recurso, um erro é retornado à aplicação e nenhuma ação é executada
-
-### 2. Solicitação
-
-**Premissa**: Dado que um `ExternalApp` possui um token ativo, permissão para solicitar uma ativação de produto e solicita uma ativação para o `customer_mid`, então uma solicitação de ativação é despachada
-
-- Dado que uma solicitação de ativação é despachada, então um email de confirmação é enviada ao `customer_mid`
-
-### 3. Avaliação
-
-**Premissa**: Dado que um `SuperUser` possui um token ativo, permissão para avaliar uma ativação de produto e
-
-1. rejeita uma determinada ativação, então o cancelamento desta ativação é despachado
-   - Dado que um cancelamento de uma ativação é despachado, então o read model de solicitações é atualizada
-   - Dado que um cancelamento de uma ativação é despachado, então um email de cancelamento é enviada ao `customer_mid`
-1. aprova uma determinada ativação, então a aprovação desta ativação é despachada
-   - Dado que uma aprovação de uma ativação é despachada, então o read model de solicitações é atualizada
-   - Dado que uma aprovação de uma ativação é despachada, então um email é enviada ao `customer_mid`
-
-Diagrama do [modelo de eventos](img/model.jpg). Note que é uma representação do domínio _exclusivamente_.
+PS I: É uma representação do domínio _exclusivamente_.
+PS II: Não é mandatório ser modelado usando CQRS nem event-driven.
+PS III: Não é mandatório implementar o EmailServer
 
 ## Requisitos
 
@@ -77,9 +37,8 @@ Especifica o contexto em que a aplicação será operacionalizada
 ### Não funcionais
 
 1. 30 empresas parceiras
-1. 10 super-users
-1. 1M reqs/dia
-1. Eventos operacionais disponibilizados em streams para consumo externo
+1. 5000 usuários simultâneos
+1. 100 reqs/s 
 
 ### Funcionais
 
@@ -87,7 +46,7 @@ Especifica o contexto em que a aplicação será operacionalizada
 
 - implementação: `golang | elixir | python`
 - armazenamento: `postgres | mongodb`
-- broker: `kafka | rabbitmq`
+- **não-mandatório** broker: `kafka | rabbitmq`
 
 #### Protocolos
 
@@ -96,13 +55,10 @@ Especifica o contexto em que a aplicação será operacionalizada
 
 #### Padrões
 
-Preferencialmente:
+Bonus points:
 
 - arquitetural: `cqrs & hexagonal`
 - design: `ddd & solid`
-
-Bonus points:
-
 - message bus as stream
 
 ### 3rd parties
