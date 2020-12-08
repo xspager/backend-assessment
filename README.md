@@ -26,9 +26,13 @@ Um usuário autenticado,
 
 Diagrama do [modelo de eventos](img/model.jpg).
 
-PS I: É uma representação do domínio _exclusivamente_.
-PS II: Não é mandatório ser modelado usando CQRS nem event-driven.
-PS III: Não é mandatório implementar o EmailServer
+Observações **importantes** sobre o modelo:
+
+  - É uma representação do domínio _exclusivamente_.
+
+  - Não é mandatório ser modelado usando CQRS nem event-driven.
+
+  - Não é mandatório implementar o EmailServer
 
 ## Requisitos
 
