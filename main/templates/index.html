@@ -16,7 +16,10 @@
             <div class="card-body">
                 <h1>Automatic Debt</h1>
                 <p>Bellow you can see how to use the API:</p>
-                <p><em>/product/activate</em> will create or delete automatic debit requests, it accepts POST and DELETE</p>
+                <p><em>/product/activate</em> will create or delete automatic debit requests, it accepts POST and DELETE HTTP methods</p>
+                <p><em>/product/activation/</em> Show to a superuser a list of to be analised automatic debit requests, it accepts only accepts <b>GET</b> method</p>
+                <p><em>/product/activation/approve/<b>pk</b></em> Allow a superuser to approve an automatic debit requests, it requires it's <b>pk</b> and accepts only accepts <b>POST</b> method</p>
+                <p><em>/product/activation/reject/<b>pk</b></em> Allow a superuser to reject an automatic debit requests, it requires it's <b>pk</b> and accepts only accepts <b>POST</b> method</p>
             </div>
         </div>
     </div>
