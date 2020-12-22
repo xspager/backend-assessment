@@ -26,7 +26,11 @@ Um servidor de teste pode ser rodado na porta 8000 com:
 
 ```bash
 $ docker-compose up -d --build
+$ docker-compose exec web python manage.py migrate --noinput
+$ docker-compose exec web python manage.py loaddata main/test/users_fixtures.json
 ```
+
+Dois usuários são criados a partir dos dados de teste, bob e superuser, ambos com a senha tables123
 
 Uma vez com um ambiente minimamente proximo de um ambiente de produção é possível realizar um teste de cara com [locust](https://locust.io)
 
