@@ -14,6 +14,10 @@ class CustomModel(models.Model):
     class Meta:
         abstract=True
 
+    def delete(self):
+        self.deleted = True
+        self.save()
+
 
 class Partner(CustomModel):
     name = models.CharField(max_length=300)
@@ -47,6 +51,12 @@ class Activation(CustomModel):
         choices=StatusActivation.choices,
         default=StatusActivation.REQUESTED
     )
+
+    def approve(self):
+        self.status = StatusActivation.APROOVED
+
+    def reject(self):
+        self.status = StatusActivation.REJECTED
 
     def __str__(self):
         return f"Direct debt from {self.partner.name} for {self.customer.name}"

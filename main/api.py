@@ -20,3 +20,6 @@ class ActivateProductViewSet(viewsets.ModelViewSet):
     serializer_class = ActivationSerializer
     queryset = Activation.objects.none()
 
+class CancelProductActivationViewSet(viewsets.ModelViewSet):
+    serializer_class = ActivationSerializer
+    queryset = Activation.objects.filter(status=Activation.StatusActivation.REQUESTED)
