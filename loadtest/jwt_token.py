@@ -12,7 +12,7 @@ class WebsiteUser(HttpUser):
     
     @task
     def get_jwt_token(self):
-        self.client.post("/api/token/", {
+        self.client.post("/api/token/", json={
             "username": "bob",
             "password": "tables123"
         })
