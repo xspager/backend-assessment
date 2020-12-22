@@ -41,7 +41,7 @@ class Activation(CustomModel):
     class StatusActivation(models.TextChoices):
         REQUESTED = "RE", "Requested"
         CANCELED = "CA", "Canceled"
-        APROOVED = "AP", "Aprooved"
+        APPROVED = "AP", "Approved"
         REJECTED = "RJ", "Rejected"
 
     partner = models.ForeignKey(Partner, on_delete=models.PROTECT)
@@ -53,10 +53,12 @@ class Activation(CustomModel):
     )
 
     def approve(self):
-        self.status = StatusActivation.APROOVED
+        self.status = self.StatusActivation.APPROVED
+        self.save()
 
     def reject(self):
-        self.status = StatusActivation.REJECTED
+        self.status = self.StatusActivation.REJECTED
+        self.save()
 
     def __str__(self):
         return f"Direct debt from {self.partner.name} for {self.customer.name}"
