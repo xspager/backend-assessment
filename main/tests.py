@@ -3,9 +3,9 @@ import base64
 from django.test import TestCase
 
 
-class TestActivation(TestCase):
+class TestAuthentication(TestCase):
 
-    fixtures = ['main/test_fixtures.json',]
+    fixtures = ['main/users_fixtures.json',]
 
     def tearDown(self):
         self.client.session.clear()
@@ -57,6 +57,10 @@ class TestActivation(TestCase):
         response = self.client.post('/product/activate', **auth_header)
 
         self.assertEqual(201, response.status_code)
+
+
+class TestActivation(TestCase):
+    fixtures = ['main/users_fixtures.json',]
     
     def test_do_not_accept_get(self):
         user_pass = "bob:tables123"
@@ -70,3 +74,19 @@ class TestActivation(TestCase):
         # 405 Method Not Allowed
         self.assertEqual(405, response.status_code)
 
+
+    def test_activation_with_valid_user(self):
+        user_pass = "bob:tables123"
+        auth_headers = {
+            "HTTP_AUTHORIZATION": "Basic " + base64.b64encode(user_pass.encode()).decode('ascii')
+        }
+
+        activation_request = {
+            "parthner_id": 1,
+            "customer_id": 1
+        }
+
+        response = self.client.post('/product/activate', **auth_headers)
+        
+        self.assertEqual(201, response.status_code)
+        self.assertIn("activation_id", response.json())

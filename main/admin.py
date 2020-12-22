@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from .models import Conta, DebitoAutomatico
+from .models import Customer, Partner, Activation
 
-admin.site.register(Conta)
-admin.site.register(DebitoAutomatico)
+class ActivationAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'status')
+    list_filter = ('status',)
+
+admin.site.register(Customer)
+admin.site.register(Partner)
+admin.site.register(Activation, ActivationAdmin)
