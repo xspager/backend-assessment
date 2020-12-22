@@ -9,6 +9,7 @@ from django.contrib.auth.models import AbstractUser
 class CustomModel(models.Model):
     deleted = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         abstract=True

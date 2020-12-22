@@ -1,0 +1,35 @@
+[
+{
+    "model": "main.partner",
+    "pk": 1,
+    "fields": {
+        "deleted": false,
+        "active": true,
+        "created_at": "2020-12-22T04:12:58.173Z",
+        "name": "Power Utility",
+        "number": 2
+    }
+},
+{
+    "model": "main.customer",
+    "pk": 1,
+    "fields": {
+        "deleted": false,
+        "active": true,
+        "created_at": "2020-12-22T04:12:58.173Z",
+        "name": "Maggie"
+    }
+},
+{
+    "model": "main.activation",
+    "pk": 1,
+    "fields": {
+        "deleted": false,
+        "active": true,
+        "created_at": "2020-12-22T04:12:58.173Z",
+        "partner": 1,
+        "customer": 1,
+        "status": "RE"
+    }
+}
+]

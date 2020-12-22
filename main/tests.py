@@ -1,4 +1,7 @@
 import base64
+import json
+
+from unittest import skip
 
 from django.test import TestCase
 
@@ -10,7 +13,7 @@ class TestAuthentication(TestCase):
     def tearDown(self):
         self.client.session.clear()
 
-    def test_nonexisting_basic_login(self):
+    def test_invalid_basic_login(self):
         user_pass = "foo:bar"
         
         auth_headers = {
@@ -21,24 +24,23 @@ class TestAuthentication(TestCase):
 
         self.assertEqual(401, response.status_code)
 
-    def test_existing_basic_login(self):
+    def test_valid_basic_login(self):
         user_pass = "bob:tables123"
         
         auth_headers = {
             "HTTP_AUTHORIZATION": "Basic " + base64.b64encode(user_pass.encode()).decode('ascii')
         }
 
-        response = self.client.post('/product/activate', **auth_headers)
+        response = self.client.post('/product/activate', data=json.dumps({}), content_type="application/json", **auth_headers)
     
-        self.assertEqual(201, response.status_code)
-        self.assertEqual({}, response.json())
+        self.assertNotEqual(401, response.status_code)
 
     def test_invalid_jwt_authentication(self):
         auth_headers = {
             'HTTP_AUTHORIZATION': 'Berer nemo',
         }
 
-        response = self.client.post('/product/activate', **auth_headers)
+        response = self.client.post('/product/activate', data=json.dumps({}), content_type="application/json", **auth_headers)
         
         self.assertNotEqual(201, response.status_code)
 
@@ -54,13 +56,16 @@ class TestAuthentication(TestCase):
             'HTTP_AUTHORIZATION': 'Bearer ' + token_resp['access'],
         }
 
-        response = self.client.post('/product/activate', **auth_header)
+        response = self.client.post('/product/activate', data=json.dumps({}), content_type="application/json", **auth_header)
 
-        self.assertEqual(201, response.status_code)
+        self.assertNotEqual(401, response.status_code)
 
 
 class TestActivation(TestCase):
-    fixtures = ['main/users_fixtures.json',]
+    fixtures = [
+        'main/users_fixtures.json',
+        'main/activation_fixtures.json',
+    ]
     
     def test_do_not_accept_get(self):
         user_pass = "bob:tables123"
@@ -82,11 +87,11 @@ class TestActivation(TestCase):
         }
 
         activation_request = {
-            "parthner_id": 1,
-            "customer_id": 1
+            "partner": 1,
+            "customer": 1
         }
 
-        response = self.client.post('/product/activate', **auth_headers)
+        response = self.client.post('/product/activate', data=json.dumps(activation_request), content_type="application/json", **auth_headers)
         
         self.assertEqual(201, response.status_code)
-        self.assertIn("activation_id", response.json())
+        self.assertIn("id", response.json())

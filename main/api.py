@@ -7,20 +7,16 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.views.decorators.http import require_http_methods, require_POST
 
 
 class ActivationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Activation 
-        fields = ['conta',]
+        fields = ['id', 'partner', 'customer']
 
-
-class ActivateProductViewSet(viewsets.GenericViewSet):
-    serializer_class = Activation
-    http_method_names = ['POST']
-
-
-@api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def activation_view(request):
-    return Response({}, status=status.HTTP_201_CREATED)
+class ActivateProductViewSet(viewsets.ModelViewSet):
+    serializer_class = ActivationSerializer
+    queryset = Activation.objects.none()
+
